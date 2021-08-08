@@ -1,0 +1,122 @@
+<html>
+
+	<head>
+	
+		<title> JavaScript( Reaction Tester )</title>
+	
+		<h1>Test Your Reactions</h1>
+		<p>Click on the boxes and circles as quickly as you can</p>
+		<p>Your Time: <span id="seconds"> 00</span>.<span id="tens">00 </span>ms</p>
+		
+		
+		<div class="square" id="shape"></div>
+	
+		<style type="text/css">
+			
+				.square {
+				
+					height: 50px;
+					width: 50px;
+					background-color: red;
+					border-radius: 50%;
+					position: relative;
+					left: 50px;
+					top:50px;
+					border-style: solid;
+					
+				}
+			
+			</style>
+			
+			
+	</head>
+	
+		<body>
+			
+			
+			
+			<script type="text/javascript">
+			
+				  var seconds = 00; 
+				  var tens = 00; 
+				  var appendTens = document.getElementById("tens")
+				  var appendSeconds = document.getElementById("seconds")
+				  var buttonStart = document.getElementById('button-start');
+				  var buttonReset = document.getElementById('button-reset');
+				  var Interval;
+			
+				function createShape() {
+				
+					var randomColor = 0;
+					
+					
+					Interval = setInterval(startTimer, 10);
+					document.getElementById("shape").style.borderStyle = "solid";
+					document.getElementById("shape").style.height = (Math.floor((Math.random() * 10) + 1)) * 20;
+					document.getElementById("shape").style.width = (Math.floor((Math.random() * 10) + 1)) * 20;
+					document.getElementById("shape").style.borderRadius = (Math.floor((Math.random() * 2) + 0)) * 50;
+					document.getElementById("shape").style.left = (Math.floor((Math.random() * 10) + 1)) * 50;
+					document.getElementById("shape").style.top = (Math.floor((Math.random() * 10) + 1)) * 50;
+					
+					randomColor= Math.floor(Math.random()*16777215).toString(16);
+					
+					document.getElementById("shape").style.backgroundColor = "#" + randomColor;
+					
+					
+					
+					
+					
+				}
+				
+				 function startTimer () {
+					tens++; 
+					
+					if(tens <= 9){
+					  appendTens.innerHTML = "0" + tens;
+					}
+					
+					if (tens > 9){
+					  appendTens.innerHTML = tens;
+					  
+					} 
+					
+					if (tens > 99) {
+					  console.log("seconds");
+					  seconds++;
+					  appendSeconds.innerHTML = "0" + seconds;
+					  tens = 0;
+					  appendTens.innerHTML = "0" + 0;
+					}
+					
+					if (seconds > 9){
+					  appendSeconds.innerHTML = seconds;
+					}
+				  
+				  }
+				
+				document.getElementById("shape").onclick = function() {
+					
+					var randomDelay = 0;
+					randomDelay= (Math.floor((Math.random() * 4) + 0)) * 1000;
+					
+					document.getElementById("shape").style.backgroundColor = "transparent";
+					document.getElementById("shape").style.borderStyle = "none";
+					setTimeout(createShape,randomDelay);
+					clearInterval(Interval);
+					tens = "00";
+					seconds = "00";
+					appendTens.innerHTML = tens;
+					appendSeconds.innerHTML = seconds;
+					
+				}
+				
+				
+				
+			</script>
+		
+		
+		</body>
+		
+	
+	
+</html>
